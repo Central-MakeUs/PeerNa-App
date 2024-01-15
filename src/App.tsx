@@ -1,14 +1,13 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {SafeAreaView, StyleSheet} from 'react-native';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 import HomeScreen from 'screens/HomeScreen';
 
 const Stack = createNativeStackNavigator();
 
 function App(): React.JSX.Element {
   return (
-    <SafeAreaView style={styles.container}>
-      {/* <WebView source={{uri: 'https://naver.com'}} /> */}
+    <SafeAreaProvider>
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{
@@ -17,16 +16,8 @@ function App(): React.JSX.Element {
           <Stack.Screen name="Home" component={HomeScreen} />
         </Stack.Navigator>
       </NavigationContainer>
-    </SafeAreaView>
-    // <View style={{flex: 1}}>
-    // </View>
+    </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 export default App;
