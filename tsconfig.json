@@ -1,22 +1,22 @@
 {
-  "extends": "@react-native/typescript-config/tsconfig.json",
+  "extends": "@tsconfig/react-native/tsconfig.json",
   "compilerOptions": {
-    "skipLibCheck": true,
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowImportingTsExtensions": true,
     "allowJs": true,
-    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
+    "esModuleInterop": true,
     "isolatedModules": true,
+    "jsx": "react-native",
+    "lib": ["es6"],
+    "moduleResolution": "node",
     "noEmit": true,
-    "jsx": "react-jsx",
-    "baseUrl": "src",
-    "typeRoots": ["./types"]
-  }
+    "strict": true,
+    "target": "esnext",
+    "baseUrl": "./src",
+    "paths": {
+      "@screens/*": ["src/screens/*"]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "metro.config.js", "jest.config.js"]
 }
