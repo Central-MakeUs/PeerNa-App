@@ -1,14 +1,17 @@
-import {StyleSheet, View} from 'react-native';
+import {KeyboardAvoidingView, StyleSheet, View} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import WebView from 'react-native-webview';
 
 export default function HomeScreen() {
   const {top, bottom} = useSafeAreaInsets();
   const styles = createStyles(top, bottom);
+
   return (
-    <View style={{...styles.container}}>
-      <WebView source={{uri: 'http://localhost:5173'}} />
-    </View>
+    <KeyboardAvoidingView style={{...styles.webview}} behavior="padding">
+      <View style={{...styles.container}}>
+        <WebView source={{uri: 'http://localhost:5173/'}} />
+      </View>
+    </KeyboardAvoidingView>
   );
 }
 
