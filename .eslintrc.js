@@ -5,5 +5,11 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/no-require-imports': 'off',
     'import/no-commonjs': 'off',
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
+    ],
   },
 };
