@@ -1,10 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {useRef} from 'react';
+import {useEffect, useRef} from 'react';
 import {KeyboardAvoidingView, StyleSheet, View} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import WebView from 'react-native-webview';
 import {LocalStorageKeys} from 'types/localStorage';
 import {WebviewBridge} from 'utils/WebviewBridge';
+import {getFcmToken, registerListenerWithFCM} from 'utils/firebase';
 
 export default function HomeScreen() {
   const webviewRef = useRef<WebView | null>(null);
@@ -20,20 +21,33 @@ export default function HomeScreen() {
       LocalStorageKeys.REFRESH_TOKEN,
     );
 
+    const fcmToken = await AsyncStorage.getItem(LocalStorageKeys.FCM_TOKEN);
+
     if (webviewRef.current) {
       WebviewBridge.postMessage(webviewRef.current, {
         type: 'init',
-        data: {accessToken, refreshToken},
+        data: {accessToken, refreshToken, fcmToken},
       });
     }
   };
+
+  useEffect(() => {
+    getFcmToken();
+  }, []);
+
+  useEffect(() => {
+    if (webviewRef.current) {
+      const unsubscribe = registerListenerWithFCM(webviewRef.current);
+      return unsubscribe;
+    }
+  }, []);
 
   return (
     <KeyboardAvoidingView style={{...styles.webview}} behavior="padding">
       <View style={{...styles.container}}>
         <WebView
           ref={webviewRef}
-          source={{uri: 'http://localhost:5173/'}}
+          source={{uri: 'https://b6d2-58-76-161-229.ngrok-free.app'}}
           onMessage={WebviewBridge.onMessage}
           onLoad={handleLoad}
         />

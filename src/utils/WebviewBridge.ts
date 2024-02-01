@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import messaging from '@react-native-firebase/messaging';
 import WebView, {WebViewMessageEvent} from 'react-native-webview';
 import {LocalStorageKeys} from 'types/localStorage';
 // TODO postmessage를 보냄.
@@ -51,6 +52,16 @@ export class WebviewBridge {
       LocalStorageKeys.REFRESH_TOKEN,
       JSON.stringify(data.refreshToken),
     );
+
+    const hasFcmToken = await AsyncStorage.getItem(LocalStorageKeys.FCM_TOKEN);
+    if (!hasFcmToken) {
+      const fcmToken = await messaging().getToken();
+
+      await AsyncStorage.setItem(
+        LocalStorageKeys.FCM_TOKEN,
+        JSON.stringify(fcmToken),
+      );
+    }
   }
 
   private static alarm(data: any) {
