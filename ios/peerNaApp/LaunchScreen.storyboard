@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <device id="retina6_72" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
@@ -14,36 +14,38 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleAspectFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="tfh-2Y-gXI" userLabel="background">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="splashBg" translatesAutoresizingMaskIntoConstraints="NO" id="HnI-6d-7tK">
+                                <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PeerNa" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="GJd-Yh-RWb">
-                                <rect key="frame" x="129.5" y="353" width="61" height="22"/>
+                                <rect key="frame" x="184.66666666666666" y="535" width="61" height="22"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Image 1" translatesAutoresizingMaskIntoConstraints="NO" id="OKv-75-dLD" userLabel="icon">
-                                <rect key="frame" x="100" y="224" width="120" height="120"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="splashIcon" translatesAutoresizingMaskIntoConstraints="NO" id="i9g-S2-eC7">
+                                <rect key="frame" x="155" y="406" width="120" height="120"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="2Es-Kk-19T"/>
-                                    <constraint firstAttribute="height" constant="120" id="7uu-Y7-c9f"/>
+                                    <constraint firstAttribute="width" constant="120" id="3Br-3J-REr"/>
+                                    <constraint firstAttribute="height" constant="120" id="CRP-7Z-BHu"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="OKv-75-dLD" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="C4X-gP-wKz"/>
+                            <constraint firstItem="HnI-6d-7tK" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="62h-8z-DaT"/>
+                            <constraint firstItem="i9g-S2-eC7" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="EVi-Rz-Hro"/>
                             <constraint firstItem="GJd-Yh-RWb" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="80" id="KeC-TN-OF2"/>
-                            <constraint firstAttribute="bottom" secondItem="tfh-2Y-gXI" secondAttribute="bottom" id="KfC-I3-sYn"/>
+                            <constraint firstAttribute="bottom" secondItem="HnI-6d-7tK" secondAttribute="bottom" id="NZP-eS-sqI"/>
                             <constraint firstItem="GJd-Yh-RWb" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="OCP-mP-2HR"/>
-                            <constraint firstAttribute="trailing" secondItem="tfh-2Y-gXI" secondAttribute="trailing" id="WJM-wh-fG3"/>
-                            <constraint firstItem="OKv-75-dLD" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="XfC-tt-gl4"/>
-                            <constraint firstItem="tfh-2Y-gXI" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="b1e-F6-afK"/>
-                            <constraint firstItem="tfh-2Y-gXI" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="r4B-Xl-QiN"/>
+                            <constraint firstItem="HnI-6d-7tK" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="jSv-Mw-CvZ"/>
+                            <constraint firstAttribute="trailing" secondItem="HnI-6d-7tK" secondAttribute="trailing" id="pW8-Jj-e5e"/>
+                            <constraint firstItem="HnI-6d-7tK" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="qqu-t0-0Zf"/>
+                            <constraint firstItem="HnI-6d-7tK" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="swF-Ca-GM6"/>
+                            <constraint firstItem="i9g-S2-eC7" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="wvl-mX-5F2"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -53,8 +55,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Image" width="780" height="1688"/>
-        <image name="Image 1" width="480" height="480"/>
+        <image name="splashBg" width="780" height="1688"/>
+        <image name="splashIcon" width="480" height="480"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

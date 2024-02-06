@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "527246402929",
+    "project_id": "peerna-2703d",
+    "storage_bucket": "peerna-2703d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:527246402929:android:4e45f92a0d7499e13482d0",
+        "android_client_info": {
+          "package_name": "com.peernaapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDp186d9iKR3YFHPgn2Ko-Me2nR-nUNMhI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -47,7 +47,7 @@ export default function HomeScreen() {
       <View style={{...styles.container}}>
         <WebView
           ref={webviewRef}
-          source={{uri: 'https://b6d2-58-76-161-229.ngrok-free.app'}}
+          source={{uri: 'http://localhost:5173'}}
           onMessage={WebviewBridge.onMessage}
           onLoad={handleLoad}
         />
