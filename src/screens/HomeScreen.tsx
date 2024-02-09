@@ -33,7 +33,11 @@ export default function HomeScreen() {
     if (webviewRef.current) {
       WebviewBridge.postMessage(webviewRef.current, {
         type: 'init',
-        data: {accessToken, refreshToken, fcmToken},
+        data: {
+          accessToken: JSON.parse(accessToken ?? ''),
+          refreshToken: JSON.parse(refreshToken ?? ''),
+          fcmToken: JSON.parse(fcmToken ?? ''),
+        },
       });
     }
   };
@@ -71,6 +75,7 @@ export default function HomeScreen() {
   useEffect(() => {
     if (webviewRef.current) {
       const unsubscribe = registerListenerWithFCM(webviewRef.current);
+      console.log(unsubscribe);
       return unsubscribe;
     }
   }, []);
@@ -80,7 +85,9 @@ export default function HomeScreen() {
       <View style={{...styles.container}}>
         <WebView
           ref={webviewRef}
-          source={{uri: 'https://87af-58-76-161-229.ngrok-free.app'}}
+          source={{
+            uri: 'https://74c8-58-76-161-229.ngrok-free.app',
+          }}
           originWhitelist={['intent', 'http', 'https', 'kakaolink']}
           onShouldStartLoadWithRequest={handleShouldStartLoadWithRequest}
           onMessage={WebviewBridge.onMessage}

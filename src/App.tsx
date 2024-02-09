@@ -13,10 +13,6 @@ function App(): React.JSX.Element {
       SplashScreen.hide();
     }, 2000);
   }, []);
-  // useEffect(() => {
-  //   const {RNWebViewController} = NativeModules;
-  //   RNWebViewController.showWebView();
-  // }, []);
   return (
     <SafeAreaProvider>
       <NavigationContainer>
