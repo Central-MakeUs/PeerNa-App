@@ -86,7 +86,7 @@ export default function HomeScreen() {
         <WebView
           ref={webviewRef}
           source={{
-            uri: 'https://74c8-58-76-161-229.ngrok-free.app/developer',
+            uri: 'http://localhost:5173',
           }}
           originWhitelist={['intent', 'http', 'https', 'kakaolink']}
           onShouldStartLoadWithRequest={handleShouldStartLoadWithRequest}
