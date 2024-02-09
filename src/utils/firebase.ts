@@ -100,6 +100,13 @@ export function registerListenerWithFCM(webview: WebView) {
       remoteMessage?.notification?.title &&
       remoteMessage?.notification?.body
     ) {
+      WebviewBridge.postMessage(webview, {
+        type: 'alarm',
+        data: {
+          title: remoteMessage?.notification?.title,
+          body: remoteMessage?.notification?.body,
+        },
+      });
       onDisplayNotification(remoteMessage?.data);
     }
   });

@@ -23,6 +23,7 @@ export class WebviewBridge {
         case 'alarm':
           WebviewBridge.alarm(message.data);
           break;
+
         default:
           console.warn('Unhandled message type:', message.type);
       }
