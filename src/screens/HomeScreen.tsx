@@ -34,9 +34,9 @@ export default function HomeScreen() {
       WebviewBridge.postMessage(webviewRef.current, {
         type: 'init',
         data: {
-          accessToken: JSON.parse(accessToken ?? ''),
-          refreshToken: JSON.parse(refreshToken ?? ''),
-          fcmToken: JSON.parse(fcmToken ?? ''),
+          accessToken,
+          refreshToken,
+          fcmToken,
         },
       });
     }
@@ -86,7 +86,7 @@ export default function HomeScreen() {
         <WebView
           ref={webviewRef}
           source={{
-            uri: 'https://74c8-58-76-161-229.ngrok-free.app',
+            uri: 'https://74c8-58-76-161-229.ngrok-free.app/developer',
           }}
           originWhitelist={['intent', 'http', 'https', 'kakaolink']}
           onShouldStartLoadWithRequest={handleShouldStartLoadWithRequest}
