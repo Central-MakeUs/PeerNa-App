@@ -1,7 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {useEffect, useRef} from 'react';
+import {useCallback, useEffect, useRef} from 'react';
 import {
   Alert,
+  BackHandler,
   KeyboardAvoidingView,
   Linking,
   Platform,
@@ -16,6 +17,21 @@ import {getFcmToken, registerListenerWithFCM} from 'utils/firebase';
 
 export default function HomeScreen() {
   const webviewRef = useRef<WebView | null>(null);
+  const backPress = useCallback(() => {
+    if (webviewRef.current) {
+      webviewRef.current.goBack();
+      return true;
+    }
+    return false;
+  }, []);
+
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', backPress);
+    return () => {
+      BackHandler.removeEventListener('hardwareBackPress', backPress);
+    };
+  }, [backPress]);
+
   const {top, bottom} = useSafeAreaInsets();
   const styles = createStyles(top, bottom);
 
