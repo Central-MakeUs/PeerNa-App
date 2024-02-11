@@ -1,4 +1,5 @@
 {
   "name": "peerNaApp",
-  "displayName": "PeerNa"
+  "displayName": "PeerNa",
+  "ios.supporstTablet": false
 }
