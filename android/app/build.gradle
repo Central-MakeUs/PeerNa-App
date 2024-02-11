@@ -70,6 +70,11 @@ react {
 def jscFlavor = 'org.webkit:android-jsc:+'
 
 android {
+    bundle {
+        language {
+            enableSplit = false
+        }
+    }
     ndkVersion rootProject.ext.ndkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
