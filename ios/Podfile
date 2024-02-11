@@ -58,7 +58,6 @@ target 'peerNaApp' do
   
   pod 'Firebase'
   pod 'GoogleUtilities', :modular_headers => true
-  pod 'FirebaseCore', :modular_headers => true
   $RNFirebaseAsStaticFramework = true
   
   use_react_native!(
