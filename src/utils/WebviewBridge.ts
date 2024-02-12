@@ -1,12 +1,15 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {CameraRoll} from '@react-native-camera-roll/camera-roll';
 import messaging from '@react-native-firebase/messaging';
 import WebView, {WebViewMessageEvent} from 'react-native-webview';
 import {LocalStorageKeys} from 'types/localStorage';
+import {checkAndRequestPhotosPermission} from 'utils/permission';
 // TODO postmessage를 보냄.
 // message를 수신해야 함.
 // 그에 따른 메서드를 정의
 
 export class WebviewBridge {
+  static webview: WebView<{}>;
   static onMessage(event: WebViewMessageEvent) {
     // TODO 에러바운더리 적용 필요함.
     try {
@@ -23,7 +26,9 @@ export class WebviewBridge {
         case 'alarm':
           WebviewBridge.alarm(message.data);
           break;
-
+        case 'card-image':
+          WebviewBridge.saveCard(message.data);
+          break;
         default:
           console.warn('Unhandled message type:', message.type);
       }
@@ -39,6 +44,7 @@ export class WebviewBridge {
       data: any;
     },
   ) {
+    this.webview = webviewRef;
     const message = JSON.stringify(data);
     webviewRef.postMessage(message);
   }
@@ -67,6 +73,29 @@ export class WebviewBridge {
 
   private static alarm(data: any) {
     console.log('Alarm method called with data:', data);
+  }
+
+  private static saveCard(data: any) {
+    const saveImageToGallery = async (base64Image: string) => {
+      try {
+        // `base64Image`는 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD...' 형식의 문자열입니다.
+        checkAndRequestPhotosPermission().then(
+          async (hasPermission: boolean) => {
+            if (hasPermission) {
+              await CameraRoll.saveAsset(base64Image);
+              WebviewBridge.postMessage(this.webview, {
+                type: 'save-card',
+                data: true,
+              });
+            }
+          },
+        );
+      } catch (error) {
+        console.error('Error saving image to gallery', error);
+      }
+    };
+
+    saveImageToGallery(data);
   }
 }
 
