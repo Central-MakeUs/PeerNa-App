@@ -102,7 +102,7 @@ export default function HomeScreen() {
         <WebView
           ref={webviewRef}
           source={{
-            uri: 'http://localhost:5173/developer',
+            uri: 'https://www.peerna.me',
           }}
           originWhitelist={['intent', 'http', 'https', 'kakaolink']}
           onShouldStartLoadWithRequest={handleShouldStartLoadWithRequest}
