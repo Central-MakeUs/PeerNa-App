@@ -1,6 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {CameraRoll} from '@react-native-camera-roll/camera-roll';
 import messaging from '@react-native-firebase/messaging';
+import {Platform} from 'react-native';
+import RNFS from 'react-native-fs';
 import WebView, {WebViewMessageEvent} from 'react-native-webview';
 import {LocalStorageKeys} from 'types/localStorage';
 import {checkAndRequestPhotosPermission} from 'utils/permission';
@@ -16,8 +18,6 @@ export class WebviewBridge {
       const message: WebviewOnMessageResponseType = JSON.parse(
         event.nativeEvent.data,
       );
-
-      console.log(message);
 
       switch (message.type) {
         case 'login':
@@ -82,7 +82,22 @@ export class WebviewBridge {
         checkAndRequestPhotosPermission().then(
           async (hasPermission: boolean) => {
             if (hasPermission) {
-              await CameraRoll.saveAsset(base64Image);
+              try {
+                if (Platform.OS === 'android') {
+                  const imageData = base64Image.split(';base64,').pop();
+                  const filePath = `${
+                    RNFS.CachesDirectoryPath
+                  }/temp_image_${new Date().getTime()}.jpg`;
+                  await RNFS.writeFile(filePath, imageData!, 'base64');
+                  await CameraRoll.saveAsset(`file://${filePath}`, {
+                    type: 'photo',
+                  });
+                } else {
+                  await CameraRoll.saveAsset(base64Image);
+                }
+              } catch (error) {
+                console.log(error);
+              }
               WebviewBridge.postMessage(this.webview, {
                 type: 'save-card',
                 data: true,

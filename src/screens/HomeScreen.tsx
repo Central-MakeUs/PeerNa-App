@@ -97,12 +97,15 @@ export default function HomeScreen() {
   }, []);
 
   return (
-    <KeyboardAvoidingView style={{...styles.webview}} behavior="padding">
+    <KeyboardAvoidingView
+      style={{...styles.webview}}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 100}>
       <View style={{...styles.container}}>
         <WebView
           ref={webviewRef}
           source={{
-            uri: 'https://www.peerna.me',
+            uri: 'https://www.peerna.me/developer',
           }}
           originWhitelist={['intent', 'http', 'https', 'kakaolink']}
           onShouldStartLoadWithRequest={handleShouldStartLoadWithRequest}
