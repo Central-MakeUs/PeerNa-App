@@ -120,6 +120,7 @@ export default function HomeScreen() {
           onShouldStartLoadWithRequest={handleShouldStartLoadWithRequest}
           onMessage={WebviewBridge.onMessage}
           onLoad={handleLoad}
+          scrollEnabled={false}
         />
       </View>
     </KeyboardAvoidingView>
