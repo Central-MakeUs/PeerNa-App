@@ -69,7 +69,10 @@ export default function HomeScreen() {
     if (event.url.startsWith('http') || event.url.startsWith('https')) {
       return true;
     } else if (Platform.OS === 'android' && event.url.startsWith('intent')) {
-      // substring(7)
+      // intent: 부분 잘라서 kakaolink:// 로 시작
+      Linking.openURL(event.url.substring(7));
+      return false;
+    } else {
       Linking.openURL(event.url).catch((err: any) => {
         Alert.alert(
           'error',
@@ -77,9 +80,6 @@ export default function HomeScreen() {
         );
         console.log(err);
       });
-
-      return false;
-    } else {
       return false;
     }
   };
