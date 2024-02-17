@@ -62,6 +62,7 @@ export default function HomeScreen() {
 
   const navigator = useNavigator();
   const handleShouldStartLoadWithRequest = (event: WebViewNavigation) => {
+    console.log(event.url);
     if (event.url.includes('notion')) {
       navigator.stackNavigation.push('DeepLink');
       return false;
@@ -69,7 +70,6 @@ export default function HomeScreen() {
     if (event.url.startsWith('http') || event.url.startsWith('https')) {
       return true;
     } else if (Platform.OS === 'android' && event.url.startsWith('intent')) {
-      // substring(7)
       Linking.openURL(event.url).catch((err: any) => {
         Alert.alert(
           'error',
@@ -80,8 +80,17 @@ export default function HomeScreen() {
 
       return false;
     } else {
-      return false;
+      if (event.url.startsWith('kakaolink')) {
+        Linking.openURL(event.url).catch(() => {
+          Alert.alert(
+            'error',
+            '앱 실행이 실패했습니다. 설치가 되어있지 않은 경우 설치하기 버튼을 눌러주세요.',
+          );
+        });
+        return false;
+      }
     }
+    return false;
   };
 
   useEffect(() => {
@@ -105,7 +114,7 @@ export default function HomeScreen() {
         <WebView
           ref={webviewRef}
           source={{
-            uri: 'https://www.peerna.me/developer',
+            uri: 'https://www.peerna.me',
           }}
           originWhitelist={['intent', 'http', 'https', 'kakaolink']}
           onShouldStartLoadWithRequest={handleShouldStartLoadWithRequest}
