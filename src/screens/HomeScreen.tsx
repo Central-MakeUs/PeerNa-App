@@ -108,8 +108,7 @@ export default function HomeScreen() {
   return (
     <KeyboardAvoidingView
       style={{...styles.webview}}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 100}>
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <View style={{...styles.container}}>
         <WebView
           ref={webviewRef}
