@@ -70,14 +70,8 @@ export default function HomeScreen() {
     if (event.url.startsWith('http') || event.url.startsWith('https')) {
       return true;
     } else if (Platform.OS === 'android' && event.url.startsWith('intent')) {
-      Linking.openURL(event.url).catch((err: any) => {
-        Alert.alert(
-          'error',
-          '앱 실행이 실패했습니다. 설치가 되어있지 않은 경우 설치하기 버튼을 눌러주세요.',
-        );
-        console.log(err);
-      });
-
+      // intent: 부분 잘라서 kakaolink:// 로 시작
+      Linking.openURL(event.url.substring(7));
       return false;
     } else {
       if (event.url.startsWith('kakaolink')) {
