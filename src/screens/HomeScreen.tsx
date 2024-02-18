@@ -64,7 +64,7 @@ export default function HomeScreen() {
   const handleShouldStartLoadWithRequest = (event: WebViewNavigation) => {
     console.log(event.url);
     if (event.url.includes('notion')) {
-      navigator.stackNavigation.push('DeepLink');
+      navigator.stackNavigation.push('DeepLink', {uri: event.url});
       return false;
     }
     if (event.url.startsWith('http') || event.url.startsWith('https')) {

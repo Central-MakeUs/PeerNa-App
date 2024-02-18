@@ -25,7 +25,7 @@ function App(): React.JSX.Element {
           <Stack.Screen
             name="DeepLink"
             component={DeepLinkScreen}
-            options={{headerShown: true, title: '이용약관'}}
+            options={{headerShown: true, title: '약관'}}
           />
         </Stack.Navigator>
       </NavigationContainer>

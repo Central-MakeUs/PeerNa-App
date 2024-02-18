@@ -1,7 +1,11 @@
+import {RouteProp, useRoute} from '@react-navigation/native';
 import {KeyboardAvoidingView, StyleSheet, View} from 'react-native';
 import WebView from 'react-native-webview';
+import {RootStackParamList} from 'types/navigator';
 
 export default function DeepLinkScreen() {
+  const route = useRoute<RouteProp<RootStackParamList, 'DeepLink'>>();
+  const {uri} = route.params;
   const styles = createStyles();
 
   return (
@@ -9,7 +13,7 @@ export default function DeepLinkScreen() {
       <View style={{...styles.container}}>
         <WebView
           source={{
-            uri: 'https://peerna.notion.site/89daac4cb26342d5a4b6e3d660b22b5c',
+            uri: uri,
           }}
         />
       </View>
