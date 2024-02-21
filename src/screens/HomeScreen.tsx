@@ -35,7 +35,7 @@ export default function HomeScreen() {
   }, [backPress]);
 
   const {top, bottom} = useSafeAreaInsets();
-  const styles = createStyles(top, bottom);
+  console.log(top, bottom);
 
   const handleLoad = async () => {
     const accessToken = await AsyncStorage.getItem(
@@ -55,6 +55,10 @@ export default function HomeScreen() {
           accessToken,
           refreshToken,
           fcmToken,
+          padding: {
+            top,
+            bottom,
+          },
         },
       });
     }
@@ -120,13 +124,10 @@ export default function HomeScreen() {
   );
 }
 
-const createStyles = (top: number, bottom: number) =>
-  StyleSheet.create({
-    container: {
-      flex: 1,
-      paddingTop: top,
-      paddingBottom: bottom / 2,
-      backgroundColor: '#fff',
-    },
-    webview: {flex: 1},
-  });
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  webview: {flex: 1},
+});
