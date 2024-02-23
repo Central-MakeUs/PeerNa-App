@@ -1,6 +1,7 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {useEffect} from 'react';
+import {StatusBar} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import SplashScreen from 'react-native-splash-screen';
 import DeepLinkScreen from 'screens/DeepLinkScreen';
@@ -11,6 +12,7 @@ const Stack = createNativeStackNavigator();
 function App(): React.JSX.Element {
   useEffect(() => {
     setTimeout(() => {
+      StatusBar.setBarStyle('dark-content');
       SplashScreen.hide();
     }, 2000);
   }, []);
