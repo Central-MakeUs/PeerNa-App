@@ -81,8 +81,8 @@ export default function HomeScreen() {
       if (event.url.startsWith('kakaolink')) {
         Linking.openURL(event.url).catch(() => {
           Alert.alert(
-            'error',
-            '앱 실행이 실패했습니다. 설치가 되어있지 않은 경우 설치하기 버튼을 눌러주세요.',
+            '취소',
+            '앱이 실행되지 않았어요\n 설치가 되어있지 않은 경우 설치하기 버튼을 눌러주세요',
           );
         });
         return false;
