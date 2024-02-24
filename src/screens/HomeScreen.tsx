@@ -66,13 +66,26 @@ export default function HomeScreen() {
 
   const navigator = useNavigator();
   const handleShouldStartLoadWithRequest = (event: WebViewNavigation) => {
+    if (
+      event.url.includes('accounts.kakao.com') ||
+      event.url.includes('kauth.kakao.com')
+    ) {
+      return true;
+    }
+
+    if (
+      event.url.includes('peer-na-web') ||
+      event.url.includes('dev.peerna.me') ||
+      event.url.includes('www.peerna.me') ||
+      event.url.includes('localhost')
+    ) {
+      return true;
+    }
+
     console.log(event.url);
-    if (event.url.includes('notion')) {
+    if (event.url.startsWith('http') || event.url.startsWith('https')) {
       navigator.stackNavigation.push('DeepLink', {uri: event.url});
       return false;
-    }
-    if (event.url.startsWith('http') || event.url.startsWith('https')) {
-      return true;
     } else if (Platform.OS === 'android' && event.url.startsWith('intent')) {
       // intent: 부분 잘라서 kakaolink:// 로 시작
       Linking.openURL(event.url.substring(7));
@@ -105,9 +118,9 @@ export default function HomeScreen() {
 
   return (
     <KeyboardAvoidingView
-      style={{...styles.webview}}
+      style={{...styles(bottom).webview}}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-      <View style={{...styles.container}}>
+      <View style={{...styles(bottom).container}}>
         <WebView
           ref={webviewRef}
           source={{
@@ -124,10 +137,12 @@ export default function HomeScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  webview: {flex: 1},
-});
+const styles = (bottom: number) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: '#fff',
+      paddingBottom: bottom / 2,
+    },
+    webview: {flex: 1},
+  });

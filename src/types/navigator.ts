@@ -1,4 +1,4 @@
 export type RootStackParamList = {
-  Homed: undefined;
+  Home: undefined;
   DeepLink: {uri: string};
 };
